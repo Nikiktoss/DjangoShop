@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import UserBasket
 
-# Register your models here.
+
+class UserBasketAdmin(admin.ModelAdmin):
+    list_display = ("id", "user", "product")
+    list_display_links = ("id", "user")
+
+
+admin.site.register(UserBasket, UserBasketAdmin)
