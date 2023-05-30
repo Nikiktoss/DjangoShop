@@ -15,7 +15,7 @@ class ShopUserProfile(models.Model):
 
     gender_choices = ((MALE, "M"), (FEMALE, "W"))
 
-    user = models.OneToOneField(ShopUser, unique=True, verbose_name="User", null=False, on_delete=models.CASCADE)
+    user = models.OneToOneField(ShopUser, verbose_name="User", null=False, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, verbose_name="Gender", choices=gender_choices, blank=True)
     about_me = models.TextField(verbose_name="About me", max_length=512, blank=True)
 
@@ -27,8 +27,5 @@ class ShopUserProfile(models.Model):
 
     @staticmethod
     @receiver(post_save, sender=ShopUser)
-    def save_profile(sender, instance, created, **kwargs):
-        user = instance
-        if created:
-            profile = ShopUserProfile(user=user)
-            profile.save()
+    def save_profile(sender, instance, **kwargs):
+        instance.shopuserprofile.save()
