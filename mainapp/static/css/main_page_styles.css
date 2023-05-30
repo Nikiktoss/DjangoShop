@@ -1,0 +1,152 @@
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    margin-top: -0px;
+    font-family: 'Montserrat';
+}
+
+.header {
+    left: 0px;
+    top: 0px;
+    margin-left: 0px;
+    width: 100%;
+    height: 80px;
+    box-sizing: border-box;
+    display: flex;
+    padding: 20px 35px;
+    justify-content: space-between;
+    items-align: center;
+}
+
+.header__logo{
+    font-size: 32px;
+    font-weight: 600;
+    color: #a107e8;
+}
+
+.search__form{
+    width: 30%;
+    height: 100%;
+}
+
+.search__field{
+    width: 100%;
+    height: 100%;
+    border: 2px solid #a107e8;
+    outline-color: #a107e8;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+
+.additional__components{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    items-align: center;
+}
+
+.additional__element{
+    font-size: 24px;
+    color: #a107e8;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.additional__element:hover{
+    color: black;
+}
+
+#login_registration_form, #registration_form {
+  display: flex;
+}
+
+.login__form, .registration__form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(17, 17, 17, 0.5);
+}
+
+.popup_open {
+  display: block;
+}
+
+.popup__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
+  max-width: 620px;
+  max-height: 750px;
+  width: 100%;
+  padding: 15px 15px;
+}
+
+.form_element{
+    min-height: 45px;
+    margin-bottom: 15px;
+}
+
+.input__field{
+    width: 98%;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.submit__button{
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #a107e8;
+    background-color: #a107e8;
+    color: black;
+    font-size: 20px;
+}
+
+.closebtn{
+    text-decoration: none;
+    color: black;
+    position: absolute;
+    top: 0%;
+    left: 102%;
+    cursor: pointer;
+    font-size: 36px;
+}
+
+.messages{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.alert_message{
+    width: 70%;
+    max-height: 35px;
+    padding: 10px; 15px;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    background-color: #ed5f68;
+    margin-bottom: 20px;
+    outline: 0;
+    border: 3px solid #959ef0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
