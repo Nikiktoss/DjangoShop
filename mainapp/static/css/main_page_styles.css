@@ -15,7 +15,7 @@ html, body {
     display: flex;
     padding: 20px 35px;
     justify-content: space-between;
-    items-align: center;
+    align-items: center;
 }
 
 .header__logo{
