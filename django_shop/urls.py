@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('mainapp.urls', 'mainapp'), namespace='mainapp')),
     path('auth/', include(('authapp.urls', 'authapp'), namespace='authapp')),
+    path('adminapp/', include(('adminapp.urls', 'adminapp'), namespace='adminapp'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
