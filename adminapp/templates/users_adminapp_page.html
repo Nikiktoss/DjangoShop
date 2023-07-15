@@ -1,0 +1,46 @@
+{% extends 'base_adminapp_page.html' %}
+{% load static %}
+
+{% block title %}Django Shop | Select user to change{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/user_adminapp_styles.css' %}">
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div class="adminapp__user" id="adminapp">
+        <p style="text-align: center; font-size: 26px; color: #a107e8;">Update User Page</p>
+        <form class="user_update_form" method="post" enctype="multipart/form-data" action="{% url 'adminapp:admin_user_update_page' pk=pk username=username %}">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.name == 'photo' %}
+                    <div class="file__element">
+                        <label id="{{ field.id_for_label }}" class="form__label">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% else %}
+                    <div class="form__element">
+                        <label id="{{ field.id_for_label }}" class="form__label">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="action__buttons">
+                <div>
+                    <a href="{% url 'adminapp:admin_user_delete_page' pk=pk %}" type="button" class="delete__button">Delete</a>
+                </div>
+                <div class="update__buttons">
+                    <button type="submit" class="save__button" id="save_and_add" name="save_and_add">Save and add another</button>
+                    <button type="submit" class="save__button" id="save_and_continue" name="save_and_continue">Save and continue editing</button>
+                    <button type="submit" class="save__button" id="save" name="save">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/drag_and_drop.js' %}"></script>
+{% endblock %}
