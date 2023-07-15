@@ -1,0 +1,23 @@
+{% extends 'base_adminapp_page.html' %}
+{% load static %}
+
+{% block title %}Django Shop | Delete user{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/user_adminapp_styles.css' %}">
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div class="adminapp__user" id="adminapp">
+        <p style="text-align: center; font-size: 26px; color: #a107e8;">Delete User Page</p>
+        <p>Are you sure you want to delete user "{{ user.username }}"? All of the following related items will be deleted too.</p>
+        <form class="user_update_form" method="post" action="{% url 'adminapp:admin_user_delete_page' pk=pk %}">
+            {% csrf_token %}
+            <div class="buttons">
+                <button type="submit" class="delete__user_button">Yes, I'm sure</button>
+                <a role="button" href="{% url 'adminapp:admin_user_update_page' pk=pk username=username %}" class="take__back_button">No, take me back</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
