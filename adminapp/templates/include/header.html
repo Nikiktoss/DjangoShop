@@ -1,0 +1,8 @@
+<div class="adminapp_header">
+        <div class="header__logo">DjangoShop</div>
+        <p class="intro__text">Welcome to the AdminApp {{ user.username }}</p>
+        <div class="additional__components">
+            <a href="{% url 'mainapp:main_page' %}" class="additional__element">Main</a>
+            <a href="#" class="additional__element">Basket</a>
+        </div>
+    </div>
