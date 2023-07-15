@@ -1,0 +1,24 @@
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/upload_file_widget_styles.css' %}">
+{% endblock %}
+
+<div id="upload-container">
+    {% if widget.is_initial %}
+        <img style="width: 30%; height: 50%; margin-bottom: 10px;" src="{{ widget.value.url }}">
+    {% if not widget.required %}
+        <div>
+            <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
+            <label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+        </div>
+    {% endif %}
+    {% else %}
+        <img src="{% static 'images/upload.png' %}" class="upload-image">
+    {% endif %}
+    <div>
+        <input type="{{ widget.type }}" id="upload_file_widget" name="{{ widget.name }}">
+        <label for="upload_file_widget">Upload file</label>
+        <span>or drag it here</span>
+    </div>
+</div>
