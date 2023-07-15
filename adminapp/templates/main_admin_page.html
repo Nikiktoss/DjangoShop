@@ -1,84 +1,53 @@
-<!DOCTYPE html>
+{% extends 'base_adminapp_page.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>DjangoShop | AdminApp Main Page</title>
-    <link rel="stylesheet" href="{% static 'css/main_admin_page_styles.css' %}">
-</head>
-<body>
-    <div class="adminapp_header">
-        <div class="header__logo">DjangoShop</div>
-        <p class="intro__text">Welcome to the AdminApp {{ user.username }}</p>
-        <div class="additional__components">
-            <a href="{% url 'mainapp:main_page' %}" class="additional__element">Main</a>
-            <a href="#" class="additional__element">Basket</a>
-        </div>
-    </div>
-    <div class="adminapp__content">
-        <div style=" width: 25%; display: flex;" id="side__part">
-            <div class="open__button" id="open_button" onclick="open_sidebar()">&raquo;</div>
-            <div class="close__button" id="close_button" onclick="close_sidebar()">&laquo;</div>
-            <div class="adminapp__sidebar" id="admin_sidebar">
-                <div class="sidebar__component">
-                    <div class="sidebar__component_title">Authapp</div>
-                    <div class="sidebar__component_class"><a style="text-decoration: none; font-size: 18px; margin-left: 15px;" href="#">ShopUsers</a></div>
-                </div>
-                <div class="sidebar__component">
-                    <div class="sidebar__component_title">Mainapp</div>
-                    <div class="sidebar__component_class"><a style="text-decoration: none; font-size: 18px; margin-left: 15px;" href="#">Products</a></div>
-                    <div class="sidebar__component_class"><a style="text-decoration: none; font-size: 18px; margin-left: 15px;" href="#">Product categories</a></div>
-                </div>
-                <div class="sidebar__component">
-                    <div class="sidebar__component_title">Orderapp</div>
-                    <div class="sidebar__component_class"><a style="text-decoration: none; font-size: 18px; margin-left: 15px;" href="#">Orders</a></div>
-                    <div class="sidebar__component_class"><a style="text-decoration: none; font-size: 18px; margin-left: 15px;" href="#">Order items</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="adminapp__users" id="adminapp_users">
+
+{% block title %}DjangoShop | AdminApp Main Page{% endblock %}
+{% block css %}
+        <link rel="stylesheet" href="{% static 'css/main_admin_page_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="adminapp__users" id="adminapp">
+        <div class="action__start">
             <p class="action__title">Select user to change</p>
-            <table class="action__fields">
-                <thead>
-                    <tr style="background: #ebebeb;">
-                        <td style="text-align: center;">Id</td>
-                        <td style="text-align: center;">Username</td>
-                        <td style="text-align: center;">Age</td>
-                        <td style="text-align: center;">Account photo</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                        {% if forloop.counter0|divisibleby:"2" %}
-                            <tr style="background-color: white;">
-                                <td style="text-align: center;"><a href="#" style="text-decoration: none;">{{ user.id }}</a></td>
-                                <td style="text-align: center;"><a href="#" style="text-decoration: none;">{{ user.username }}</a></td>
-                                <td style="text-align: center;">{{ user.age }}</td>
-                                {% if user.photo %}
-                                    <td style="text-align: center;"><img src="{{ user.photo.url }}" style="width: 80px; height: 80px;"></td>
-                                {% else %}
-                                    <td style="text-align: center;"><img src="{% static 'default_images/default_user_photo.webp' %}" style="width: 80px; height: 80px;"></td>
-                                {% endif %}
-                            </tr>
-                        {% else %}
-                            <tr style="background-color: #ebebeb;">
-                                <td style="text-align: center;"><a href="#" style="text-decoration: none;">{{ user.id }}</a></td>
-                                <td style="text-align: center;"><a href="#" style="text-decoration: none;">{{ user.username }}</a></td>
-                                <td style="text-align: center;">{{ user.age }}</td>
-                                {% if user.photo %}
-                                    <td style="text-align: center;"><img src="{{ user.photo.url }}" style="width: 80px; height: 80px;"></td>
-                                {% else %}
-                                    <td style="text-align: center;"><img src="{% static 'default_images/default_user_photo.webp' %}" style="width: 80px; height: 80px;"></td>
-                                {% endif %}
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
-
+            <a href="{% url 'adminapp:admin_user_create_page' %}" class="add__user_action">Add user +</a>
         </div>
+        <table class="action__fields">
+            <thead>
+                <tr style="background: #ebebeb;">
+                    <td style="text-align: center;">Id</td>
+                    <td style="text-align: center;">Username</td>
+                    <td style="text-align: center;">Age</td>
+                    <td style="text-align: center;">Account photo</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in object_list %}
+                    {% if forloop.counter0|divisibleby:"2" %}
+                        <tr style="background-color: white; height: 90px;">
+                            <td style="text-align: center;"><a href="{% url 'adminapp:admin_user_update_page' pk=user.id username=user.username %}" style="text-decoration: none;">{{ user.id }}</a></td>
+                            <td style="text-align: center;"><a href="{% url 'adminapp:admin_user_update_page' pk=user.id username=user.username %}" style="text-decoration: none;">{{ user.username }}</a></td>
+                            <td style="text-align: center;">{{ user.age }}</td>
+                            {% if user.photo %}
+                                <td style="text-align: center;"><img src="{{ user.photo.url }}" style="width: 80px; height: 80px;"></td>
+                            {% else %}
+                                <td style="text-align: center;"><img src="{% static 'default_images/default_user_photo.webp' %}" style="width: 80px; height: 80px;"></td>
+                            {% endif %}
+                        </tr>
+                    {% else %}
+                        <tr style="background-color: #ebebeb; height: 90px;">
+                            <td style="text-align: center;"><a href="{% url 'adminapp:admin_user_update_page' pk=user.id username=user.username %}" style="text-decoration: none;">{{ user.id }}</a></td>
+                            <td style="text-align: center;"><a href="{% url 'adminapp:admin_user_update_page' pk=user.id username=user.username %}" style="text-decoration: none;">{{ user.username }}</a></td>
+                            <td style="text-align: center;">{{ user.age }}</td>
+                            {% if user.photo %}
+                                <td style="text-align: center;"><img src="{{ user.photo.url }}" style="width: 80px; height: 80px;"></td>
+                            {% else %}
+                                <td style="text-align: center;"><img src="{% static 'default_images/default_user_photo.webp' %}" style="width: 80px; height: 80px;"></td>
+                            {% endif %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
-<script src="{% static 'js/open_close_sidebar.js' %}"></script>
-</body>
-</html>
+{% endblock %}
