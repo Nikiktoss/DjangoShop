@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Django Shop | Base title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base_adminapp_styles.css' %}">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    {% block header %}
+        {% include 'include/header.html' %}
+    {% endblock %}
+
+    <div class="adminapp__content">
+        {% include 'include/sidebar.html' %}
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block js %}{% endblock %}
+
+<script src="{% static 'js/open_close_sidebar.js' %}"></script>
+</body>
+</html>
